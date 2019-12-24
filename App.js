@@ -1,13 +1,11 @@
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
-import {HelloWorld} from "./src/components/atoms/index.js";
+import Login from "./src/scenes/login/login";
 
 export default function App() {
   return (
     <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!
-        <HelloWorld name='Helder' />
-      </Text>
+     <Login/>
     </View>
   );
 }
