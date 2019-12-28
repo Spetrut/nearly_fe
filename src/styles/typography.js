@@ -1,14 +1,23 @@
 import { scaleFont } from './mixins';
 
 // FONT FAMILY
-export const FONT_FAMILY_REGULAR = 'OpenSans-Regular';
-export const FONT_FAMILY_BOLD = 'OpenSans-Bold';
+export const FONT_FAMILY_REGULAR = 'AvenirLTStd-Book';
+export const FONT_FAMILY_BOLD = 'AvenirLTStd-Medium';
+export const FONT_FAMILY_LIGHT = 'AvenirLTStd-Light';
+
 
 // FONT WEIGHT
 export const FONT_WEIGHT_REGULAR = '400';
 export const FONT_WEIGHT_BOLD = '700';
+export const FONT_WEIGHT_LIGHT = '200';
+
 
 // FONT SIZE
+
+export const FONT_SIZE_128 = scaleFont(128);
+export const FONT_SIZE_64 = scaleFont(64);
+export const FONT_SIZE_46 = scaleFont(46);
+export const FONT_SIZE_32 = scaleFont(32);
 export const FONT_SIZE_16 = scaleFont(16);
 export const FONT_SIZE_14 = scaleFont(14);
 export const FONT_SIZE_12 = scaleFont(12);
@@ -20,11 +29,16 @@ export const LINE_HEIGHT_16 = scaleFont(16);
 
 // FONT STYLE
 export const FONT_REGULAR = {
-    fontFamily: FONT_FAMILY_REGULAR,
+   // fontFamily: FONT_FAMILY_REGULAR,
     fontWeight: FONT_WEIGHT_REGULAR,
 };
 
 export const FONT_BOLD = {
-    fontFamily: FONT_FAMILY_BOLD,
+    //fontFamily: FONT_FAMILY_BOLD,
     fontWeight: FONT_WEIGHT_BOLD,
+};
+
+export const FONT_LIGHT = {
+    fontFamily: FONT_FAMILY_LIGHT,
+    fontWeight: FONT_WEIGHT_LIGHT,
 };

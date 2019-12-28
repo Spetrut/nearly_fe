@@ -1,11 +1,11 @@
-import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
-import Login from "./src/scenes/login/login";
+import React from "react";
+import {StyleSheet, View} from "react-native";
+import Welcome from "./src/scenes/authentication/welcome/welcome";
 
 export default function App() {
   return (
     <View style={styles.container}>
-     <Login/>
+      <Welcome />
     </View>
   );
 }
@@ -13,8 +13,8 @@ export default function App() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
+    backgroundColor: "#fff",
+    alignItems: "center",
+    justifyContent: "center"
+  }
 });
