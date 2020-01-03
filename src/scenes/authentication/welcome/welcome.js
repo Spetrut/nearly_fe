@@ -5,14 +5,15 @@ import {SocialIcon} from 'react-native-elements/src/index'
 import {LinearGradient} from 'expo-linear-gradient/build/index';
 import welcomeStyles from './welcome.style.js'
 import authenticationStyles from '../authentication.style.js'
+import commonStyles from '../../common.styles.js'
 
 const Welcome = props => {
     return (
-        <View style={authenticationStyles.screen}>
+        <View style={commonStyles.screen}>
             <View style={welcomeStyles.mainView}>
-                <Text style={{...welcomeStyles.logo, ...authenticationStyles.colorWhite}}>Nearly</Text>
+                <Text style={{...welcomeStyles.logo, ...commonStyles.colorWhite}}>Nearly</Text>
                 <Text
-                    style={{...authenticationStyles.mainCallToAction, ...authenticationStyles.colorWhite, ...authenticationStyles.wrapper}}>Find
+                    style={{...authenticationStyles.mainCallToAction, ...commonStyles.colorWhite, ...authenticationStyles.wrapper}}>Find
                     new friends
                     nearby and all over the world</Text>
             </View>
@@ -25,7 +26,7 @@ const Welcome = props => {
                 </TouchableOpacity>
                 <LinearGradient colors={[PRIMARY_1, PRIMARY_2]}
                                 style={{...authenticationStyles.button,  ...authenticationStyles.userInput,...authenticationStyles.wrapper}}>
-                    <Text style={{...authenticationStyles.colorWhite, ...authenticationStyles.buttonText}}> Sign
+                    <Text style={{...commonStyles.colorWhite, ...authenticationStyles.buttonText}}> Sign
                         Up </Text>
                 </LinearGradient>
             </View>

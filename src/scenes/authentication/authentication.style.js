@@ -1,15 +1,7 @@
 import {StyleSheet} from 'react-native';
 import {Colors, Mixins, Typography} from "../../styles/index";
-import {PRIMARY_2, WHITE} from "../../styles/colors";
 
 export default StyleSheet.create({
-    screen: {
-        backgroundColor: Colors.SECONDARY,
-        flex: 1,
-        color: Colors.WHITE,
-        alignSelf: 'stretch',
-        alignItems: "center"
-    },
     userInput:{
         width: '80%',
         height: Mixins.scaleSize(45),
@@ -28,9 +20,6 @@ export default StyleSheet.create({
         ...Typography.FONT_BOLD,
         fontSize:Typography.FONT_SIZE_16,
     },
-    colorWhite:{
-        color: Colors.WHITE,
-    },
     backgroundWhite:{
         backgroundColor: Colors.WHITE
     },
@@ -38,7 +27,7 @@ export default StyleSheet.create({
         color: Colors.PRIMARY_1,
     },
     colorPrimary_2:{
-        color: PRIMARY_2
+        color: Colors.PRIMARY_2
     },
     wrapper:{
         marginVertical:Mixins.scaleSize(5)

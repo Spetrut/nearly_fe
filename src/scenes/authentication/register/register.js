@@ -3,12 +3,13 @@ import {Text, TextInput, View} from "react-native";
 import {PRIMARY_1, PRIMARY_2, WHITE} from "../../../styles/colors";
 import {LinearGradient} from 'expo-linear-gradient/build/index';
 import authenticationStyles from "../authentication.style";
+import commonStyles from '../../common.styles.js'
 
 const Register = props => {
     return (
-        <View style={authenticationStyles.screen}>
+        <View style={commonStyles.screen}>
             <View style={authenticationStyles.textView}>
-                <Text style={{...authenticationStyles.greeting, ...authenticationStyles.colorWhite}}>Create an
+                <Text style={{...authenticationStyles.greeting, ...commonStyles.colorWhite}}>Create an
                     account</Text>
             </View>
             <View style={authenticationStyles.inputView}>
@@ -22,7 +23,7 @@ const Register = props => {
             </View>
             <View style={authenticationStyles.buttonView}>
             <LinearGradient colors={[PRIMARY_1, PRIMARY_2]} style={{...authenticationStyles.button, ...authenticationStyles.userInput, ...authenticationStyles.wrapper}}>
-                <Text style={ authenticationStyles.colorWhite}>Sign up </Text>
+                <Text style={ commonStyles.colorWhite}>Sign up </Text>
             </LinearGradient>
             </View>
         </View>
@@ -31,3 +32,5 @@ const Register = props => {
 export default Register;
 
 
+// Linear gradient -> Linear gradient button
+// inputs -> form organism

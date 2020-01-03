@@ -3,13 +3,14 @@ import {Text, TextInput, View} from "react-native";
 import {PRIMARY_1, PRIMARY_2, WHITE} from "../../../styles/colors";
 import {LinearGradient} from 'expo-linear-gradient/build/index';
 import authenticationStyles from '../authentication.style.js'
+import commonStyles from '../../common.styles.js'
 
 const Login = props => {
     return (
-        <View style={authenticationStyles.screen}>
+        <View style={commonStyles.screen}>
             <View style={authenticationStyles.textView}>
-                <Text style={{...authenticationStyles.greeting, ...authenticationStyles.colorWhite}}>Welcome back</Text>
-                <Text style={{...authenticationStyles.mainCallToAction, ...authenticationStyles.colorWhite}}>Log in into
+                <Text style={{...authenticationStyles.greeting, ...commonStyles.colorWhite}}>Welcome back</Text>
+                <Text style={{...authenticationStyles.mainCallToAction, ...commonStyles.colorWhite}}>Log in into
                     your account</Text>
             </View>
             <View style={authenticationStyles.inputView}>
@@ -22,7 +23,7 @@ const Login = props => {
             <View style={authenticationStyles.buttonView}>
                 <LinearGradient colors={[PRIMARY_1, PRIMARY_2]}
                                 style={{...authenticationStyles.button, ...authenticationStyles.userInput, ...authenticationStyles.wrapper}}>
-                    <Text style={ authenticationStyles.colorWhite}>Log In </Text>
+                    <Text style={ commonStyles.colorWhite}>Log In </Text>
                 </LinearGradient>
             </View>
         </View>
