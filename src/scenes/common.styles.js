@@ -16,5 +16,8 @@ export default StyleSheet.create({
     colorWhite:{
         color: Colors.WHITE,
     },
+    colorPrimary_1:{
+        color: Colors.PRIMARY_1,
+    }
 
 });

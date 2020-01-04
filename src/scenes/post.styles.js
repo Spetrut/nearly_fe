@@ -7,7 +7,7 @@ export default StyleSheet.create({
         alignItems: "center",
         justifyContent: "center",
         width: "100%",
-        paddingTop: Mixins.scaleSize(30)
+        ...Mixins.padding(30,0,0,0)
     },
     postContainer:{
         width:'100%',
@@ -22,8 +22,7 @@ export default StyleSheet.create({
         marginBottom: Mixins.scaleSize(30)
     },
     descriptionTextStyle: {
-        marginLeft: Mixins.scaleSize(15),
-        marginTop: Mixins.scaleSize(15)
+        ...Mixins.margin(15,0,0,15)
     },
     creatorDetailsView: {
         flexDirection: 'row',
@@ -50,8 +49,7 @@ export default StyleSheet.create({
     },
     likeView:{
         flexDirection: 'row',
-        marginLeft: Mixins.scaleSize(15),
-        marginTop: Mixins.scaleSize(15)
+        ...Mixins.margin(15,0,0,15)
     },
     likeIcon:{
         marginRight:Mixins.scaleSize(5),

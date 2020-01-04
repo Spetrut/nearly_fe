@@ -1,6 +1,7 @@
 import React from "react";
 import {Image, Text, View} from "react-native";
 import commonStyles from "../../scenes/common.styles";
+//remove commonStyles, move it into props
 import {UserDetails, Like} from "../atoms/atoms";
 
 const Post = props => {

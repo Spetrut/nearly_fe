@@ -1,6 +1,6 @@
 import React from "react";
 import {View} from "react-native";
-import {Post} from "../molecules/index";
+import {Post} from "../molecules/molecules";
 
 const PostList = props => {
     return (
