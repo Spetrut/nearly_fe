@@ -18,6 +18,11 @@ export default StyleSheet.create({
     },
     colorPrimary_1:{
         color: Colors.PRIMARY_1,
-    }
+    },
+    userInput:{
+        width: '100%',
+        height: Mixins.scaleSize(45),
+        borderRadius: 20,
+    },
 
 });

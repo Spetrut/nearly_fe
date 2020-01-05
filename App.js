@@ -1,12 +1,11 @@
 import React from "react";
 import {StyleSheet, View} from "react-native";
-import Home from "./src/scenes/home/home";
-import Welcome from "./src/scenes/authentication/welcome/welcome";
+import ImagePickerExample from "./src/scenes/post/newPost";
 
 export default function App() {
   return (
     <View style={styles.container}>
-      <Home />
+      <ImagePickerExample />
     </View>
   );
 }
