@@ -9,6 +9,8 @@ import {PRIMARY_1, PRIMARY_2, WHITE} from "../../styles/colors";
 import Constants from "expo-constants";
 import {_getLocationAsync} from "../../services/business/location/location.service";
 import {Location} from "../../components/atoms/atoms";
+import homeStyles from "../home/home.style";
+import {HomeHeader} from "../../components/molecules/molecules";
 
 export default class ImagePickerExample extends React.Component {
     state = {
@@ -33,6 +35,9 @@ export default class ImagePickerExample extends React.Component {
 
         return (
             <View style={commonStyles.screen}>
+                <HomeHeader viewStyle={homeStyles.header} logoStyle={{...homeStyles.logo, ...commonStyles.colorWhite}}
+                            showLocationView={false}
+                />
                 <View style={newPostStyles.formView}>
                     <View style={newPostStyles.imageView}>
                         {image &&

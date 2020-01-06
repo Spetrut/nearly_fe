@@ -1,5 +1,5 @@
 import React from "react";
-import {ScrollView, Text, View} from "react-native";
+import {ScrollView, View} from "react-native";
 import {PostList} from "../../components/organisms/organisms.js";
 import commonStyles from "../common.styles.js";
 import postStyles from "../post.styles.js"
@@ -11,13 +11,14 @@ const HomeLayout = props => {
 
     return (
         <View style={commonStyles.screen}>
+            <HomeHeader viewStyle={homeStyles.header} logoStyle={{...homeStyles.logo, ...commonStyles.colorWhite}}
+                        locationIconViewStyle={homeStyles.locationIconView}
+                        locationIconStyle={homeStyles.locationIcon}
+                        locationIconTextStyle={{...commonStyles.colorPrimary_1}}
+                        location={props.location}
+                        showLocationView={true}
+            />
             <ScrollView style={commonStyles.scrollView}>
-                <HomeHeader viewStyle={homeStyles.header} logoStyle={{...homeStyles.logo, ...commonStyles.colorWhite}}
-                            locationIconViewStyle={homeStyles.locationIconView}
-                            locationIconStyle={homeStyles.locationIcon}
-                            locationIconTextStyle={{...commonStyles.colorPrimary_1}}
-                            location={props.location}
-                />
                 <PostList
                     postContainerStyle={postStyles.postContainer}
                     listViewStyle={postStyles.listView}

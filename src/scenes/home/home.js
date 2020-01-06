@@ -2,6 +2,7 @@ import React, {Component} from "react";
 import HomeLayout from "./home.layout";
 import Constants from 'expo-constants';
 import {_getLocationAsync} from '../../services/business/location/location.service'
+import * as firebase from "firebase";
 
 export default class Home extends Component {
 
@@ -31,11 +32,17 @@ export default class Home extends Component {
     ];
 
     state = {
+        email: "",
+        displayName: "",
         location: null,
         errorMessage: null,
     };
 
     componentDidMount() {
+        const { email, displayName,photoURL } = firebase.auth().currentUser;
+
+        this.setState({ email, displayName });
+
         if (Platform.OS === 'android' && !Constants.isDevice) {
             this.setState({
                 errorMessage: 'Oops, this will not work on Sketch in an Android emulator. Try it on your device!',

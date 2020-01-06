@@ -24,5 +24,12 @@ export default StyleSheet.create({
         height: Mixins.scaleSize(45),
         borderRadius: 20,
     },
+    goBackIcon:{
+        paddingTop:60
+    },
+    errorMessageView:{
+        alignContent:'center',
+       ...Mixins.padding(20,20,0,20)
+    }
 
 });

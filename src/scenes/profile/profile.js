@@ -5,6 +5,8 @@ import { PostList} from "../../components/organisms/organisms.js";
 import commonStyles from "../common.styles.js";
 import profileStyle from "./profile.style.js";
 import postStyles from "../post.styles.js"
+import homeStyles from "../home/home.style";
+import {HomeHeader} from "../../components/molecules/molecules";
 
 
 const Profile = props => {
@@ -40,25 +42,18 @@ const Profile = props => {
 
     return (
         <View style={commonStyles.screen}>
+            <HomeHeader viewStyle={homeStyles.header} logoStyle={{...homeStyles.logo, ...commonStyles.colorWhite}}
+                        showLocationView={false} username='alex stoica' usernameViewStyle={profileStyle.usernameViewStyle}
+            />
             <ScrollView style={commonStyles.scrollView}>
                 <UserDetails userDetailsViewStyle={profileStyle.userDetailsView}
                              userProfileStyle={profileStyle.userProfileImageStyle}
                              usernameStyle={profileStyle.usernameStyle}
-                             user={mockUser}/>
+                             user={mockUser}
+                />
                 <View style={profileStyle.editIconView}>
                     <Image style={profileStyle.editIcon} source={require('../../../assets/icons/edit.png')}/>
                 </View>
-                {/*<LinearGradientButton*/}
-                {/*    viewStyle={profileStyle.linearGradientView}*/}
-                {/*    linearGradientStyle={profileStyle.linearGradient}*/}
-                {/*    textStyle={{*/}
-                {/*        ...profileStyle.linearGradientText,*/}
-                {/*        ...commonStyles.colorWhite*/}
-                {/*    }}*/}
-                {/*    text="Edit profile"*/}
-                {/*    colors={[Colors.PRIMARY_1, Colors.PRIMARY_2]}*/}
-                {/*/>*/}
-
                 <PostList
                     postContainerStyle={postStyles.postContainer}
                     listViewStyle={postStyles.listView}

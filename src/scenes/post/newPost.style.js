@@ -4,7 +4,7 @@ import {Colors, Mixins, Typography} from "../../styles";
 export default StyleSheet.create({
 
     formView: {
-        ...Mixins.padding(60,0,0,0),
+        ...Mixins.padding(10,0,0,0),
         flex: 2,
         alignItems: 'center',
         width: '100%'

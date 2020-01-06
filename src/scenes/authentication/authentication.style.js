@@ -53,6 +53,6 @@ export default StyleSheet.create({
         width: '80%',
         ...Typography.FONT_BOLD,
         fontSize: Typography.FONT_SIZE_46,
-        ...Mixins.padding(50,0,0,0)
+        ...Mixins.padding(30,0,0,0)
     },
 });
