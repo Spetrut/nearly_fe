@@ -3,40 +3,28 @@ import HomeLayout from "./home.layout";
 import Constants from 'expo-constants';
 import {_getLocationAsync} from '../../services/business/location/location.service'
 import * as firebase from "firebase";
+import Fire from "../../Fire"
+import { YellowBox } from 'react-native';
+YellowBox.ignoreWarnings(['Setting a timer']);
+import { withNavigation } from 'react-navigation';
 
-export default class Home extends Component {
+class Home extends React.Component {
 
-    imageUrl1 = require("./shutterstock_793481701.jpg");
-    imageUrl2 = require("./influencer-marketing-3-things.jpg");
-    imageUrl3 = require("./0_Cs1LVVwsqVZP50DR.jpg");
-
-    mockPosts = [
-        {
-            key: "1", description: "lorem ipsum lorem ipsum", imageUrl: this.imageUrl1, user: {
-                username: 'Blanche Hall',
-                profileImageUrl: this.imageUrl1
-            }, likeCount: 33, isLikedPost: true
-        },
-        {
-            key: "2", description: "lorem ipsum lorem ipsum", imageUrl: this.imageUrl2, user: {
-                username: 'Blanche Hall',
-                profileImageUrl: this.imageUrl2
-            }, likeCount: 33, isLikedPost: false
-        },
-        {
-            key: "3", description: "lorem ipsum lorem ipsum", imageUrl: this.imageUrl3, user: {
-                username: 'Blanche Hall',
-                profileImageUrl: this.imageUrl3
-            }, likeCount: 33, isLikedPost: true
-        }
-    ];
 
     state = {
         email: "",
         displayName: "",
         location: null,
         errorMessage: null,
+        posts:[]
     };
+
+
+
+    _getPosts (location) {
+       return Fire.shared.getPostsFromLocation(location);
+    };
+
 
     componentDidMount() {
         const { email, displayName,photoURL } = firebase.auth().currentUser;
@@ -45,10 +33,20 @@ export default class Home extends Component {
 
         if (Platform.OS === 'android' && !Constants.isDevice) {
             this.setState({
-                errorMessage: 'Oops, this will not work on Sketch in an Android emulator. Try it on your device!',
+                location:"Timișoara, România"
             });
+            this._getPosts("Timișoara, România").then(res=>{
+               // debugger
+                this.setState({posts:res});
+            });
+
         } else {
-            _getLocationAsync().then(res=>{this.setState(res)});
+            _getLocationAsync().then(res=>{
+                this.setState(res);
+                this._getPosts(res.location).then(posts=>{
+                    this.setState({posts:posts});
+                });
+            });
         }
     }
 
@@ -57,11 +55,22 @@ export default class Home extends Component {
         if (this.state.errorMessage) {
             text = this.state.errorMessage;
         } else if (this.state.location) {
-           text=this.state.location.city+', '+this.state.location.country;
+           text=this.state.location;
         }
-        return (
-            <HomeLayout location={text} posts={this.mockPosts}/>
-        );
+        if(this.props.navigation.state.params&&this.props.navigation.state.params.reload){
+            console.log("aleluia");
+            this.props.navigation.state.params.reload=false;
+            this.componentDidMount();
+        }
+
+        if(this.state.posts.length>0){
+           // debugger
+            return <HomeLayout location={text} posts={this.state.posts}/>
+        }
+        else{
+            return  <HomeLayout location={text}/>
+        }
     }
 }
 
+export default withNavigation(Home);

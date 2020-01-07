@@ -1,5 +1,5 @@
 import * as React from 'react';
-import {Image, Text, TextInput, TouchableOpacity, View} from 'react-native';
+import {ActivityIndicator, Image, Text, TextInput, TouchableOpacity, View} from 'react-native';
 import {_pickImage, _takePhoto, getPermissionAsync} from '../../services/business/post/image.service'
 import commonStyles from "../common.styles.js";
 import newPostStyles from "./newPost.style"
@@ -11,13 +11,22 @@ import {_getLocationAsync} from "../../services/business/location/location.servi
 import {Location} from "../../components/atoms/atoms";
 import homeStyles from "../home/home.style";
 import {HomeHeader} from "../../components/molecules/molecules";
+import Fire from '../../Fire'
+import {Colors} from "../../styles";
+
+
+const firebase = require("firebase");
+require("firebase/firestore");
+
 
 export default class ImagePickerExample extends React.Component {
     state = {
+        description:"",
         image: null,
-        validForm: false,
         location: null,
+        validForm: false,
         errorMessage: null,
+        loading:false
     };
     validFormColors = [PRIMARY_1, PRIMARY_2];
     invalidFormColors = [PRIMARY_2, PRIMARY_2];
@@ -30,9 +39,24 @@ export default class ImagePickerExample extends React.Component {
         if (this.state.errorMessage) {
             text = this.state.errorMessage;
         } else if (this.state.location) {
-            text=this.state.location.city+', '+this.state.location.country;
+            text=this.state.location;
         }
-
+        if(this.state.loading){
+        return    <View style={commonStyles.screen}>
+                <HomeHeader viewStyle={homeStyles.header} logoStyle={{...homeStyles.logo, ...commonStyles.colorWhite}}
+                            showLocationView={false}
+                />
+                <View  style={newPostStyles.formView}>
+                    <View style={newPostStyles.imageView}>
+                        {image &&
+                        <Image source={{uri: image}} style={newPostStyles.image}/>}
+                    </View>
+                </View>
+                <View  style={newPostStyles.buttonsView}>
+                    <ActivityIndicator color={Colors.PRIMARY_2} size="large"></ActivityIndicator>
+                </View>
+            </View>
+        }
         return (
             <View style={commonStyles.screen}>
                 <HomeHeader viewStyle={homeStyles.header} logoStyle={{...homeStyles.logo, ...commonStyles.colorWhite}}
@@ -44,7 +68,10 @@ export default class ImagePickerExample extends React.Component {
                         <Image source={{uri: image}} style={newPostStyles.image}/>}
                     </View>
                     <View style={newPostStyles.inputsView}>
-                        <TextInput placeholder='description...' underlineColorAndroid='transparent'
+                        <TextInput
+                                   onChangeText={description => this.setState({ description })}
+                                   value={this.state.description}
+                                   placeholder='description...' underlineColorAndroid='transparent'
                                    placeholderTextColor={WHITE}
                                    style={{...authenticationStyles.textInput, ...authenticationStyles.userInput, ...authenticationStyles.wrapper, ...authenticationStyles.colorPrimary_1}}/>
                         <Location locationIconViewStyle={newPostStyles.locationIconView} locationIconStyle={newPostStyles.locationIcon}
@@ -69,7 +96,7 @@ export default class ImagePickerExample extends React.Component {
                             a new
                             photo</Text>
                     </TouchableOpacity>
-                    <TouchableOpacity disabled={this.state.validForm} onPress={this.takePhoto}
+                    <TouchableOpacity disabled={this.state.validForm===true} onPress={this.handlePost}
                                       style={{...authenticationStyles.button, ...authenticationStyles.userInput, ...authenticationStyles.wrapper}}>
                         <LinearGradient
                             colors={this.getDoneButtonColors()}
@@ -109,5 +136,21 @@ export default class ImagePickerExample extends React.Component {
     takePhoto = async () => {
         let result = await _takePhoto();
         this.setState(result);
+    };
+
+    handlePost = () => {
+        this.setState({ loading: true });
+        Fire.shared
+            .addPost({ description: this.state.description.trim(),location:this.state.location,localUri: this.state.image })
+            .then(ref => {
+                this.setState({ description: "", image: null });
+                this.setState({ loading: false });
+                this.props.navigation.navigate('Home',{ reload:true });
+            })
+            .catch(error => {
+                this.setState({ loading: false });
+                alert(error.message);
+            });
+
     };
 }

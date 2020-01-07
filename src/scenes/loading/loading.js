@@ -1,8 +1,8 @@
 import React from "react";
-import {View, Text, StyleSheet, ActivityIndicator} from "react-native";
+import {ActivityIndicator, StyleSheet, Text, View} from "react-native";
 import * as firebase from "firebase";
 import commonStyles from "../common.styles.js";
-import {Colors, Mixins, Typography} from "../../styles";
+import {Colors} from "../../styles";
 
 
 export default class Loading extends React.Component {

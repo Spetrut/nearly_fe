@@ -14,5 +14,6 @@ export const _getLocationAsync = async () => {
         latitude: geocodeLocation.coords.latitude,
         longitude: geocodeLocation.coords.longitude
     });
-    return {location:location[0]};
+    "Timișoara, România"
+    return {location:location[0].city+', '+location[0].country};
 };

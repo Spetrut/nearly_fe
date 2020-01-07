@@ -2,6 +2,7 @@ import React from "react";
 import {Text, View} from "react-native";
 import {Location} from "../atoms/atoms";
 import {Colors} from "../../styles";
+import Fire from "../../Fire"
 
 const HomeHeader = props => {
 
@@ -9,8 +10,11 @@ const HomeHeader = props => {
     if(props.showLocationView){
         locationView=  <Location  locationIconViewStyle={props.locationIconViewStyle} locationIconStyle={props.locationIconStyle}
                                   locationIconTextStyle={props.locationIconTextStyle} location={props.location}/>
-    }else{
-        locationView= <View style={props.usernameViewStyle}><Text style={{color:Colors.PRIMARY_1,fontSize:16}}>{props.username}</Text></View>
+    }
+    if(props.showLogOut)
+    {
+        locationView= <View style={props.usernameViewStyle}><Text  onPress={() => {Fire.shared.signOut();}}
+                                                                   style={{color:Colors.PRIMARY_1,fontSize:16}}>log out</Text></View>
     }
     return (
         <View style={props.viewStyle}>

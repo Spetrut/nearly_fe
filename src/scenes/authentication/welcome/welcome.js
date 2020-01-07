@@ -6,35 +6,13 @@ import {LinearGradient} from 'expo-linear-gradient/build/index';
 import welcomeStyles from './welcome.style.js'
 import authenticationStyles from '../authentication.style.js'
 import commonStyles from '../../common.styles.js'
-import * as Facebook from 'expo-facebook';
 import * as firebase from "firebase";
+import Fire from "../../../Fire"
 
 export default class Welcome extends React.Component {
 
     async loginWithFacebook(){
-        try {
-            await Facebook.initializeAsync('1564485277022519');
-            const {
-                type,
-                token,
-                expires,
-                permissions,
-                declinedPermissions,
-            } = await Facebook.logInWithReadPermissionsAsync({
-                permissions: ['public_profile'],
-            });
-            if (type === 'success') {
-                // Get the user's name using Facebook's Graph API
-                const response = await fetch(`https://graph.facebook.com/me?access_token=${token}`);
-                // Alert.alert('Logged in!', `Hi ${(await response.json()).name}!`);
-                const credential = firebase.auth.FacebookAuthProvider.credential(token);
-                firebase.auth().signInWithCredential(credential).catch(err=>console.log(err));
-            } else {
-                // type === 'cancel'
-            }
-        } catch ({ message }) {
-            alert(`Facebook Login Error: ${message}`);
-        }
+        Fire.shared.createUserWithFacebook();
     }
 
     render() {

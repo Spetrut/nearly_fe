@@ -15,42 +15,17 @@ import Loading from "./src/scenes/loading/loading"
 import {Colors} from "./src/styles";
 
 
-var firebaseConfig = {
-    apiKey: "AIzaSyCHuSdvETmyLwY5mxx8yI6SCMDrcaBBJRA",
-    authDomain: "nearly-7c7b2.firebaseapp.com",
-    databaseURL: "https://nearly-7c7b2.firebaseio.com",
-    projectId: "nearly-7c7b2",
-    storageBucket: "nearly-7c7b2.appspot.com",
-    messagingSenderId: "318878935327",
-    appId: "1:318878935327:web:58a8796569cf7b3dd3a82a"
-};
-// Initialize Firebase
-firebase.initializeApp(firebaseConfig);
-
-
-const AppStack = createStackNavigator({
-    Home: {
-        screen: Home,
-        navigationOptions: {
-            title: 'Home',
-            headerShown: false //this will hide the header
-        }
-    },
-    Profile: {
-        screen: Profile,
-        navigationOptions: {
-            title: 'Profile',
-            headerShown: false //this will hide the header
-        }
-    },
-    Post: {
-        screen: Post,
-        navigationOptions: {
-            title: 'Post',
-            headerShown: false //this will hide the header
-        }
-    }
-});
+// var firebaseConfig = {
+//     apiKey: "AIzaSyCHuSdvETmyLwY5mxx8yI6SCMDrcaBBJRA",
+//     authDomain: "nearly-7c7b2.firebaseapp.com",
+//     databaseURL: "https://nearly-7c7b2.firebaseio.com",
+//     projectId: "nearly-7c7b2",
+//     storageBucket: "nearly-7c7b2.appspot.com",
+//     messagingSenderId: "318878935327",
+//     appId: "1:318878935327:web:58a8796569cf7b3dd3a82a"
+// };
+// // Initialize Firebase
+// firebase.initializeApp(firebaseConfig);
 
 const AppTabNavigator = createBottomTabNavigator(
     {
@@ -59,7 +34,12 @@ const AppTabNavigator = createBottomTabNavigator(
             navigationOptions: {
                 title: 'Home',
                 headerShown: false,//this will hide the header
-                tabBarIcon: ({ tintColor }) => <Ionicons name="md-home" size={24} color={tintColor} />
+                tabBarIcon: ({ tintColor }) => <Ionicons name="md-home" size={24} color={tintColor} />,
+                tabBarOnPress:({ navigation, defaultHandler }) => {
+                    navigation.state.params={ ...navigation.state.params,reload:true};
+                    console.log('mergeeeeeeeeeeeeee:');
+                    defaultHandler()
+                }
             }
         },
         Post: {
