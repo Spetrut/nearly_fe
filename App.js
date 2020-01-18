@@ -4,24 +4,25 @@ import {createAppContainer, createSwitchNavigator} from "react-navigation";
 import * as firebase from "firebase";
 import {firebaseConfig} from "./src/firebaseConfig";
 import {AuthStackNavigator} from "./src/navigations/authStackNavigator";
+import Loading from "./src/scenes/loading/loading";
 
 firebase.initializeApp(firebaseConfig);
 
 export default createAppContainer(
     createSwitchNavigator(
         {
-            // Loading: {
-            //   screen: Loading,
-            //   navigationOptions: {
-            //     title: 'Welcome',
-            //     headerShown: false //this will hide the header
-            //   }
-            // },
+            Loading: {
+              screen: Loading,
+              navigationOptions: {
+                title: 'Welcome',
+                headerShown: false
+              }
+            },
             Auth: AuthStackNavigator,
             App: AppTabNavigator
         },
         {
-            initialRouteName: "Auth",
+            initialRouteName: "Loading",
         }
     )
 );
