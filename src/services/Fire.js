@@ -53,6 +53,9 @@ class Fire {
         }
     };
 
+    loginWithEmail = async(user)=>{
+      return  firebase.auth().signInWithEmailAndPassword(user.email,user.password);
+    };
 
     signOut = () => {
         firebase.auth().signOut();
