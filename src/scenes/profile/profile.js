@@ -1,79 +1,53 @@
 import React from "react";
-import {Image, ScrollView, View} from "react-native";
-import {UserDetails} from "../../components/atoms/atoms.js";
-import { PostList} from "../../components/organisms/organisms.js";
-import commonStyles from "../common.styles.js";
-import profileStyle from "./profile.style.js";
-import postStyles from "../post.styles.js"
+import ProfileLayout from "./profile.layout";
+import {_pickImage, getCameraRollPermissionAsync} from "../../services/business/image.service";
+import {uploadProfilePicture,getUserById} from "../../services/http/profile.service";
+import {_getPostsFromUser} from "../../services/http/post.service";
 
+export default class Profile extends React.Component {
 
-const Profile = props => {
-    const imageUrl1 = require("./shutterstock_793481701.jpg");
-    const imageUrl2 = require("./influencer-marketing-3-things.jpg");
-    const imageUrl3 = require("./0_Cs1LVVwsqVZP50DR.jpg");
-
-    const mockPosts = [
-        {
-            key: "1", description: "lorem ipsum lorem ipsum", imageUrl: imageUrl1, user: {
-                username: 'Blanche Hall',
-                profileImageUrl: imageUrl1
-            }, likeCount: 33, isLikedPost: true
+    state = {
+        user:{
+            email: "",
+            username: "",
+            avatar:null,
+            uid:null
         },
-        {
-            key: "2", description: "lorem ipsum lorem ipsum", imageUrl: imageUrl2, user: {
-                username: 'Blanche Hall',
-                profileImageUrl: imageUrl2
-            }, likeCount: 33, isLikedPost: false
-        },
-        {
-            key: "3", description: "lorem ipsum lorem ipsum", imageUrl: imageUrl3, user: {
-                username: 'Blanche Hall',
-                profileImageUrl: imageUrl3
-            }, likeCount: 33, isLikedPost: true
-        }
-    ];
-
-    const mockUser = {
-        username: 'Blanche Hall',
-        profileImageUrl: imageUrl2
+        posts:[],
+        loading:false
     };
 
-    return (
-        <View style={commonStyles.screen}>
-            <ScrollView style={commonStyles.scrollView}>
-                <UserDetails userDetailsViewStyle={profileStyle.userDetailsView}
-                             userProfileStyle={profileStyle.userProfileImageStyle}
-                             usernameStyle={profileStyle.usernameStyle}
-                             user={mockUser}/>
-                <View style={profileStyle.editIconView}>
-                    <Image style={profileStyle.editIcon} source={require('../../../assets/icons/edit.png')}/>
-                </View>
-                {/*<LinearGradientButton*/}
-                {/*    viewStyle={profileStyle.linearGradientView}*/}
-                {/*    linearGradientStyle={profileStyle.linearGradient}*/}
-                {/*    textStyle={{*/}
-                {/*        ...profileStyle.linearGradientText,*/}
-                {/*        ...commonStyles.colorWhite*/}
-                {/*    }}*/}
-                {/*    text="Edit profile"*/}
-                {/*    colors={[Colors.PRIMARY_1, Colors.PRIMARY_2]}*/}
-                {/*/>*/}
 
-                <PostList
-                    postContainerStyle={postStyles.postContainer}
-                    listViewStyle={postStyles.listView}
-                    creatorDetailsViewStyle={postStyles.creatorDetailsView}
-                    creatorProfileImageStyle={postStyles.creatorProfileImageStyle}
-                    creatorUsernameStyle={postStyles.creatorUsername}
-                    postViewStyle={postStyles.postView}
-                    imageStyle={postStyles.imageStyle}
-                    posts={mockPosts}
-                    descriptionTextStyle={postStyles.descriptionTextStyle}
-                    likeViewStyle={postStyles.likeView}
-                    likeIconStyle={postStyles.likeIcon}
-                />
-            </ScrollView>
-        </View>
-    );
-};
-export default Profile;
+    componentDidMount() {
+        getUserById().then(res=>{
+            this.setState({user:res});
+        });
+        _getPostsFromUser().then(posts=>{
+            this.setState({posts:posts});
+        });
+    }
+
+
+    pickImage = async () => {
+        getCameraRollPermissionAsync();
+        let result = await _pickImage();
+        this.setState({ loading: true });
+
+        uploadProfilePicture({localUri: result.image}).then(()=>{
+            getUserById().then(res=>{
+                this.setState({ loading: false });
+                this.setState({user:res});
+            });
+        })
+    };
+
+
+
+    render(){
+        return(<ProfileLayout
+                              posts={this.state.posts}
+                              user={this.state.user}
+                              pickImage={this.pickImage}
+                              loading={this.state.loading}/>);
+    }
+}

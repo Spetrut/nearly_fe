@@ -1,7 +1,7 @@
 import * as React from 'react';
 import NewPostLayout from "./newPost.layout";
-import {_pickImage, _takePhoto, getCameraRollPermissionAsync} from '../../services/business/post/image.service'
-import {_getUserLocation} from "../../services/business/location/location.service";
+import {_pickImage, _takePhoto, getCameraRollPermissionAsync} from '../../services/business/image.service'
+import {_getUserLocation} from "../../services/business/location.service";
 import {_addPost} from "../../services/http/post.service";
 
 export default class NewPost extends React.Component {

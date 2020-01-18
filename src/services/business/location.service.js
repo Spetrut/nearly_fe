@@ -1,6 +1,6 @@
-import * as Permissions from "expo-permissions";
-import * as Location from "expo-location";
-import Constants from "expo-constants";
+import * as Permissions from "expo-permissions/build/Permissions";
+import * as Location from "expo-location/build/Location";
+import Constants from "expo-constants/build/Constants";
 
 export const _getUserLocation = async () =>{
 

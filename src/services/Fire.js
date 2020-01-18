@@ -90,6 +90,23 @@ class Fire {
         });
     };
 
+    uploadAvatar = async ({localUri}) =>{
+        const path = `photos/${this.uid}/${Date.now()}.jpg`;
+        const fireUser= firebase.auth().currentUser;
+        const remoteUri = await this.uploadPhotoAsync(localUri,path);
+        var db=this.firestore;
+
+        return this.firestore.collection("users").where("uid","==",fireUser.uid).get().then(function(querySnapshot) {
+            querySnapshot.forEach(function(doc) {
+                console.log(doc.id, " => ", doc.data());
+                db.collection("users").doc(doc.id).update({avatar: remoteUri});
+            });
+        }).catch(err=>{
+            console.log(err.message)
+        })
+
+    };
+
     uploadPhotoAsync = (uri, filename) => {
         return new Promise(async (res, rej) => {
             const response = await fetch(uri);
@@ -121,6 +138,24 @@ class Fire {
                 let user = querySnapshot.docs.map(doc => doc.data());
                 // debugger
                 return user[0]
+            })
+            .catch(function (error) {
+                console.log('Error getting documents: ', error)
+            })
+    }
+
+
+    getPostsFromUser(){
+        const fireUser= firebase.auth().currentUser;
+
+        return firebase
+            .firestore()
+            .collection('posts').where("creatorUid", "==", fireUser.uid)
+            .get()
+            .then(function (querySnapshot) {
+                let posts = querySnapshot.docs.map(doc => doc.data());
+                // debugger
+                return posts.sort((a,b)=> b.timestamp-a.timestamp);
             })
             .catch(function (error) {
                 console.log('Error getting documents: ', error)

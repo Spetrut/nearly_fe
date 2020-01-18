@@ -1,6 +1,6 @@
 import React, {Component} from "react";
 import HomeLayout from "./home.layout";
-import {_getUserLocation} from '../../services/business/location/location.service'
+import {_getUserLocation} from '../../services/business/location.service'
 import {_getPostsFromLocation} from "../../services/http/post.service";
 
 export default class Home extends Component {

@@ -1,6 +1,6 @@
-import Constants from "expo-constants";
-import * as Permissions from "expo-permissions";
-import * as ImagePicker from "expo-image-picker";
+import Constants from "expo-constants/build/Constants";
+import * as Permissions from "expo-permissions/build/Permissions";
+import * as ImagePicker from "expo-image-picker/build/ImagePicker";
 
 const options={
     mediaTypes: ImagePicker.MediaTypeOptions.Images,
