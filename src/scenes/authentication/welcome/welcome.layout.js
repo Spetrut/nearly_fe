@@ -6,7 +6,6 @@ import authenticationStyles from "../authentication.style";
 import {LinearGradient} from "expo-linear-gradient";
 import {PRIMARY_1, PRIMARY_2} from "../../../styles/colors";
 import {SocialIcon} from "react-native-elements";
-import {loginWithFacebook} from "./welcome.service";
 
 const WelcomeLayout = props => {
     return (
@@ -41,7 +40,7 @@ const WelcomeLayout = props => {
                 <Text style={{...welcomeStyles.socialLoginText, ...authenticationStyles.wrapper}}>Or login
                     with</Text>
                 <SocialIcon
-                    onPress={() => loginWithFacebook()}
+                    onPress={() => props.loginWithFacebook()}
                     light
                     type='facebook'
                 />

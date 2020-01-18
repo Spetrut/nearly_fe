@@ -26,6 +26,10 @@ export default StyleSheet.create({
     },
     goBackIcon:{
         paddingTop:60
+    },
+    errorMessageView:{
+        alignContent:'center',
+        ...Mixins.padding(20,20,0,20)
     }
 
 });
