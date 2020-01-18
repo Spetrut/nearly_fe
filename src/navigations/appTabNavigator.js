@@ -6,14 +6,13 @@ import * as Colors from "../styles/colors";
 import {createBottomTabNavigator} from "react-navigation-tabs";
 import { Ionicons } from "@expo/vector-icons";
 
-
 export const AppTabNavigator = createBottomTabNavigator(
     {
         Home: {
             screen: Home,
             navigationOptions: {
                 title: 'Home',
-                headerShown: false,//this will hide the header
+                headerShown: false,
                 tabBarIcon: ({ tintColor }) => <Ionicons name="md-home" size={24} color={tintColor} />
             }
         },
@@ -21,7 +20,7 @@ export const AppTabNavigator = createBottomTabNavigator(
             screen: NewPost,
             navigationOptions: {
                 title: 'NewPost',
-                headerShown: false ,//this will hide the header
+                headerShown: false ,
                 tabBarIcon: ({ tintColor }) => (
                     <Ionicons
                         color={tintColor}
@@ -35,7 +34,7 @@ export const AppTabNavigator = createBottomTabNavigator(
             screen: Profile,
             navigationOptions: {
                 title: 'Profile',
-                headerShown: false, //this will hide the header
+                headerShown: false,
                 tabBarIcon: ({ tintColor }) => <Ionicons name="md-person" size={24} color={tintColor} />
             }
         }

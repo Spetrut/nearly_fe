@@ -24,5 +24,8 @@ export default StyleSheet.create({
         height: Mixins.scaleSize(45),
         borderRadius: 20,
     },
+    goBackIcon:{
+        paddingTop:60
+    }
 
 });
