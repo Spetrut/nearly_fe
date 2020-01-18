@@ -9,7 +9,7 @@ const options={
     quality: 1
 };
 
-export const getPermissionAsync = async () => {
+export const getCameraRollPermissionAsync = async () => {
     if (Constants.platform.ios) {
         const { status } = await Permissions.askAsync(Permissions.CAMERA_ROLL);
         if (status !== 'granted') {

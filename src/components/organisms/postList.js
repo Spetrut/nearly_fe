@@ -7,7 +7,7 @@ const PostList = props => {
         <View style={props.listViewStyle}>
             {props.posts.map(post => {
                 return <Post
-                    key={post.key}
+                    key={post.timestamp}
                     postContainerStyle={props.postContainerStyle}
                     creatorDetailsViewStyle={props.creatorDetailsViewStyle}
                     creatorProfileImageStyle={props.creatorProfileImageStyle}
@@ -22,6 +22,5 @@ const PostList = props => {
             })}
         </View>
     );
-
 };
 export default PostList;

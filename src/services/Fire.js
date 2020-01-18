@@ -53,6 +53,81 @@ class Fire {
         }
     };
 
+    getPostsFromLocation(location) {
+        return firebase
+            .firestore()
+            .collection('posts').where("location", "==", location)
+            .get()
+            .then(function (querySnapshot) {
+                let posts = querySnapshot.docs.map(doc => doc.data());
+                return posts.sort((a,b)=> b.timestamp-a.timestamp);
+            })
+            .catch(function (error) {
+                console.log('Error getting documents: ', error)
+            })
+    };
+
+    addPost = async ({description, location, localUri}) => {
+        const remoteUri = await this.uploadPhotoAsync(localUri, `photos/${this.uid}/${Date.now()}`);
+        const user = await this.getUserById();
+        return new Promise((res, rej) => {
+            this.firestore
+                .collection("posts")
+                .add({
+                    creatorPhoto:user.avatar,
+                    creatorUsername:user.username,
+                    creatorUid:user.uid,
+                    description,
+                    location,
+                    uid: this.uid,
+                    timestamp: this.timestamp,
+                    image: remoteUri
+                }).then(ref => {
+                res(ref);
+            }).catch(error => {
+                rej(error);
+            });
+        });
+    };
+
+    uploadPhotoAsync = (uri, filename) => {
+        return new Promise(async (res, rej) => {
+            const response = await fetch(uri);
+            const file = await response.blob();
+
+            let upload = firebase.storage().ref(filename).put(file);
+            upload.on(
+                "state_changed",
+                snapshot => {
+                },
+                err => {
+                    rej(err);
+                },
+                async () => {
+                    const url = await upload.snapshot.ref.getDownloadURL();
+                    res(url);
+                }
+            );
+        });
+    };
+
+    getUserById(){
+        const fireUser= firebase.auth().currentUser;
+        return firebase
+            .firestore()
+            .collection('users').where("uid", "==", fireUser.uid)
+            .get()
+            .then(function (querySnapshot) {
+                let user = querySnapshot.docs.map(doc => doc.data());
+                // debugger
+                return user[0]
+            })
+            .catch(function (error) {
+                console.log('Error getting documents: ', error)
+            })
+    }
+
+
     loginWithEmail = async(user)=>{
       return  firebase.auth().signInWithEmailAndPassword(user.email,user.password);
     };
