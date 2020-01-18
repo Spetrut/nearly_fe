@@ -10,7 +10,7 @@ import Constants from "expo-constants";
 import {_getLocationAsync} from "../../services/business/location/location.service";
 import {Location} from "../../components/atoms/atoms";
 
-export default class ImagePickerExample extends React.Component {
+export default class NewPost extends React.Component {
     state = {
         image: null,
         validForm: false,
