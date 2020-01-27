@@ -4,7 +4,7 @@ import NewPost from "../scenes/post/newPost";
 import Profile from "../scenes/profile/profile";
 import * as Colors from "../styles/colors";
 import {createBottomTabNavigator} from "react-navigation-tabs";
-import { Ionicons } from "@expo/vector-icons";
+import {Ionicons} from "@expo/vector-icons";
 
 export const AppTabNavigator = createBottomTabNavigator(
     {
@@ -13,7 +13,7 @@ export const AppTabNavigator = createBottomTabNavigator(
             navigationOptions: {
                 title: 'Home',
                 headerShown: false,
-                tabBarIcon: ({ tintColor }) => <Ionicons name="md-home" size={24} color={tintColor} />
+                tabBarIcon: ({ tintColor }) => <Ionicons name="md-home" size={32} color={tintColor} />
             }
         },
         Post: {
@@ -25,7 +25,7 @@ export const AppTabNavigator = createBottomTabNavigator(
                     <Ionicons
                         color={tintColor}
                         name="md-add-circle"
-                        size={24}
+                        size={32}
                     />
                 )
             }
@@ -35,7 +35,7 @@ export const AppTabNavigator = createBottomTabNavigator(
             navigationOptions: {
                 title: 'Profile',
                 headerShown: false,
-                tabBarIcon: ({ tintColor }) => <Ionicons name="md-person" size={24} color={tintColor} />
+                tabBarIcon: ({ tintColor }) => <Ionicons name="md-person" size={32} color={tintColor} />
             }
         }
     },
@@ -46,7 +46,8 @@ export const AppTabNavigator = createBottomTabNavigator(
             showLabel: false,
             style: {
                 borderTopWidth:0,
-                backgroundColor: Colors.SECONDARY_3,
+                borderTopColor:Colors.PRIMARY_1,
+                backgroundColor: Colors.SECONDARY_2,
             }
         },
     }

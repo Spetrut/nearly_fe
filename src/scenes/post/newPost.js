@@ -3,6 +3,7 @@ import NewPostLayout from "./newPost.layout";
 import {_pickImage, _takePhoto, getCameraRollPermissionAsync} from '../../services/business/image.service'
 import {_getUserLocation} from "../../services/business/location.service";
 import {_addPost} from "../../services/http/post.service";
+import CameraRoll from "@react-native-community/cameraroll";
 
 export default class NewPost extends React.Component {
     state = {
@@ -11,24 +12,40 @@ export default class NewPost extends React.Component {
         location: null,
         validForm: false,
         errorMessage: null,
-        loading: false
+        loading: false,
+        photos:[]
     };
+
     componentDidMount() {
         getCameraRollPermissionAsync();
         _getUserLocation().then(res => this.setState(res));
+        this.getPhotos();
     }
+
+    getPhotos = () => {
+        // CameraRoll.getPhotos({
+        //     first: 20,
+        //     assetType: 'Photos',
+        // })
+        //     .then(r => {
+        //         this.setState({ photos: r.edges });
+        //     })
+        //     .catch((err) => {
+        //         //Error Loading Images
+        //     });
+    };
 
     handlePost = (description) => {
         this.setState({loading: true});
-        const post ={ description: description.trim(),location:this.state.location,localUri: this.state.image };
+        const post = {description: description.trim(), location: this.state.location, localUri: this.state.image};
         _addPost(post).then(() => {
-            this.setState({ image: null });
-            this.setState({ loading: false });
-            this.props.navigation.navigate('Home',{ reload:true });
+            this.setState({image: null});
+            this.setState({loading: false});
+            this.props.navigation.navigate('Home', {reload: true});
         }).catch(error => {
-                this.setState({ loading: false });
-                alert(error.message);
-            });
+            this.setState({loading: false});
+            alert(error.message);
+        });
     };
 
     pickImage = async () => {
@@ -50,6 +67,7 @@ export default class NewPost extends React.Component {
             text = this.state.location;
         }
         return (<NewPostLayout
+            photos={this.state.photos}
             location={text}
             loading={this.state.loading}
             handlePost={this.handlePost}

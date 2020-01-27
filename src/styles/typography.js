@@ -18,6 +18,7 @@ export const FONT_SIZE_128 = scaleFont(128);
 export const FONT_SIZE_64 = scaleFont(64);
 export const FONT_SIZE_46 = scaleFont(46);
 export const FONT_SIZE_32 = scaleFont(32);
+export const FONT_SIZE_24 = scaleFont(24);
 export const FONT_SIZE_16 = scaleFont(16);
 export const FONT_SIZE_14 = scaleFont(14);
 export const FONT_SIZE_12 = scaleFont(12);
@@ -39,6 +40,6 @@ export const FONT_BOLD = {
 };
 
 export const FONT_LIGHT = {
-    fontFamily: FONT_FAMILY_LIGHT,
+   // fontFamily: FONT_FAMILY_LIGHT,
     fontWeight: FONT_WEIGHT_LIGHT,
 };

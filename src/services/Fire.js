@@ -17,6 +17,7 @@ class Fire {
             let db = this.firestore.collection("users").doc(this.uid);
             db.set({
                 uid: this.uid,
+                about:'',
                 username: user.username,
                 email: user.email,
                 avatar: null
@@ -42,9 +43,10 @@ class Fire {
                     let db = this.firestore.collection("users").doc(this.uid);
                     db.set({
                         uid: this.uid,
+                        about:'I am a dedicated person with a family of four. I enjoy reading, and the knowledge and perspective that my reading gives me has strengthened my teaching skills and presentation abilities. ',
                         username: data.user.displayName,
                         email: data.user.email,
-                        avatar: null
+                        avatar: 'https://firebasestorage.googleapis.com/v0/b/nearly-7c7b2.appspot.com/o/photos%2FWQtDMyeUMhh8wCxtqVPgawC8pvp2%2F1579448864745.jpg?alt=media&token=9398510c-c6bf-4319-8e4b-d6e673b693af'
                     });
                 }).catch(err => console.log(err));
             }

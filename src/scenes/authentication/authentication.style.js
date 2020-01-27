@@ -33,12 +33,14 @@ export default StyleSheet.create({
         marginVertical:Mixins.scaleSize(5)
     },
     mainCallToAction: {
+        color: Colors.WHITE,
         ...Typography.FONT_REGULAR,
-        fontSize:Typography.FONT_SIZE_16,
+        fontSize:Typography.FONT_SIZE_24,
     },
     textView: {
         height: '40%',
-        width: '80%'
+        width: '80%',
+        marginBottom: 100
     },
     inputView: {
         alignItems: "center",
@@ -50,6 +52,7 @@ export default StyleSheet.create({
         width: '100%'
     },
     greeting: {
+        marginBottom:15,
         width: '80%',
         ...Typography.FONT_BOLD,
         fontSize: Typography.FONT_SIZE_46,

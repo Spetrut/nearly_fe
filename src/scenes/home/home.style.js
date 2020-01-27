@@ -7,22 +7,36 @@ export default StyleSheet.create({
         fontSize:Typography.FONT_SIZE_32,
     },
     header:{
-        flexDirection: 'row',
+       // flexDirection: 'row',
         width:'100%',
-        backgroundColor:Colors.SECONDARY_3,
-        ...Mixins.padding(30,16,10,18)
+        backgroundColor:Colors.SECONDARY_2,
+        ...Mixins.padding(35,16,10,18)
     },
     locationIconView:{
-        width:'75%',
-        alignItems:'center',
+        width:'100%',
+        //alignItems:'center',
         flexDirection: 'row',
-        justifyContent:'flex-end'
+       // justifyContent:'flex-end'
     },
     locationIcon:{
         height: Mixins.scaleSize(20),
         width: Mixins.scaleSize(20),
     },
-    locationIconText:{
-
+    optionsView:{
+        marginTop:25,
+        flexDirection: 'row',
+        width:'100%',
+        alignItems:'center',
+    },
+    latestView:{
+        flex:1,
+        marginLeft:15
+    },
+    popularView:{
+        flex:1,
+        marginRight:15,
+        //alignItems:'center',
+        flexDirection: 'row',
+        justifyContent:'flex-end'
     }
 });

@@ -13,7 +13,7 @@ const Like = props => {
     return (
         <View style={props.likeViewStyle}>
             {icon}
-            <Text style={commonStyles.colorWhite}>{props.likeCount}</Text>
+            <Text style={{...commonStyles.colorWhite,fontSize:20}}>{props.likeCount}</Text>
         </View>
     );
 };

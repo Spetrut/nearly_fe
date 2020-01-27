@@ -5,7 +5,7 @@ const Location = props => {
 
     return (
         <View style={props.locationIconViewStyle}>
-            <Text style={props.locationIconTextStyle}>{props.location}</Text>
+            <Text style={{...props.locationIconTextStyle,fontWeight:"bold"}}>{props.location}</Text>
             <Image style={props.locationIconStyle} source={require('../../../assets/icons/location.png')}/>
         </View>
     );

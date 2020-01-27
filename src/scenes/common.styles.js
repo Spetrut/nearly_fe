@@ -3,7 +3,7 @@ import {Colors, Mixins, Typography} from "../styles/index";
 
 export default StyleSheet.create({
     screen: {
-        backgroundColor: Colors.SECONDARY_1,
+        backgroundColor: Colors.SECONDARY_3,
         flex: 1,
         color: Colors.WHITE,
         alignSelf: 'stretch',
@@ -15,6 +15,9 @@ export default StyleSheet.create({
     },
     colorWhite:{
         color: Colors.WHITE,
+    },
+    colorDarkGrey:{
+        color: Colors.DARK_GREY,
     },
     colorPrimary_1:{
         color: Colors.PRIMARY_1,

@@ -7,11 +7,12 @@ import homeStyles from "./home.style.js";
 import {HomeHeader} from "../../components/molecules/molecules";
 
 
+
 const HomeLayout = props => {
 
-    let content=null;
-    if(props&&props.posts){
-        content=<PostList
+    let content = null;
+    if (props && props.posts) {
+        content = <PostList
             postContainerStyle={postStyles.postContainer}
             listViewStyle={postStyles.listView}
             creatorDetailsViewStyle={postStyles.creatorDetailsView}
@@ -35,6 +36,14 @@ const HomeLayout = props => {
                         showLocationView={true}
             />
             <ScrollView style={commonStyles.scrollView}>
+                {/*<View style={homeStyles.optionsView}>*/}
+                {/*    <View style={homeStyles.latestView}>*/}
+                {/*        <Text onPress={()=>props.latestButtonPress()} style={{...props.latestColor, fontSize: 50}}>Latest</Text>*/}
+                {/*    </View>*/}
+                {/*    <View style={homeStyles.popularView}>*/}
+                {/*        <Text onPress={()=>props.popularButtonPress()} style={{...props.popularColor, fontSize: 50}}>Popular</Text>*/}
+                {/*    </View>*/}
+                {/*</View>*/}
                 {content}
             </ScrollView>
         </View>

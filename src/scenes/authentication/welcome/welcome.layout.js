@@ -13,9 +13,9 @@ const WelcomeLayout = props => {
             <View style={welcomeStyles.mainView}>
                 <Text style={{...welcomeStyles.logo, ...commonStyles.colorWhite}}>Nearly</Text>
                 <Text
-                    style={{...authenticationStyles.mainCallToAction, ...commonStyles.colorWhite, ...authenticationStyles.wrapper}}>Find
+                    style={{...authenticationStyles.mainCallToAction,  ...authenticationStyles.wrapper}}>Find
                     new friends
-                    nearby and all over the world</Text>
+                    nearby </Text>
             </View>
             <View style={welcomeStyles.buttonView}>
                 <TouchableOpacity onPress={() => props.navigation.navigate("Login")}

@@ -13,8 +13,8 @@ const HomeHeader = props => {
     }
     if(props.showLogOut)
     {
-        locationView= <View style={props.usernameViewStyle}><Text  onPress={() => {Fire.shared.signOut();}}
-                                                                   style={{color:Colors.PRIMARY_1,fontSize:16}}>log out</Text></View>
+        locationView= <View style={props.logOutButtonView}><Text onPress={() => {Fire.shared.signOut();}}
+                                                                 style={{color:Colors.PRIMARY_1,...props.logOutButtonStyle}}>log out</Text></View>
     }
     return (
         <View style={props.viewStyle}>

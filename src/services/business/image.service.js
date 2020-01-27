@@ -5,7 +5,7 @@ import * as ImagePicker from "expo-image-picker/build/ImagePicker";
 const options={
     mediaTypes: ImagePicker.MediaTypeOptions.Images,
     allowsEditing: true,
-    aspect: [4, 3],
+    aspect: [4, 4],
     quality: 1
 };
 

@@ -27,7 +27,10 @@ export default class Profile extends React.Component {
         });
     }
 
-
+    navigateToIndividualPost(p){
+        console.log(p);
+        this.props.navigation.navigate('IndividualPost' ,{post: p});
+    }
     pickImage = async () => {
         getCameraRollPermissionAsync();
         let result = await _pickImage();
@@ -45,6 +48,7 @@ export default class Profile extends React.Component {
 
     render(){
         return(<ProfileLayout
+                             navigateToIndividualPost={(p)=>this.navigateToIndividualPost(p)}
                               posts={this.state.posts}
                               user={this.state.user}
                               pickImage={this.pickImage}
